@@ -21,9 +21,9 @@ export default class RemindersController{
             const { name, date } = req.body;
             console.log(req.body);
 
-            await reminderServices.addReminder(name, date);
+            const newReminder = await reminderServices.addReminder(name, date);
 
-            return res.status(201).json({ message: 'Lembrete adicionado com sucesso.' });
+            return res.status(201).json(newReminder);
         } catch (error) {
             console.error('Erro ao adicionar o lembrete:', error);
             return res.status(500).json({ error: 'Erro ao adicionar o lembrete.' });

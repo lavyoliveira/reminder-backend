@@ -53,7 +53,10 @@ export default class ReminderServices {
         };
 
         // adiciona documento a coleção
-        await db.collection('reminders').add(newReminder);
+        // await db.collection('reminders').add(newReminder);
+        const reminder = await db.collection('reminders').add(newReminder);
+        newReminder.id = reminder.id;
+        return newReminder;
     }
 
     async deleteReminder(id: string) {
