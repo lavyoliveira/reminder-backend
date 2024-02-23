@@ -5,7 +5,7 @@ import { getDay } from 'date-fns';
 export default class ReminderServices {
     async getAllReminders() {
         try {
-            const remindersSnapshot = await db.collection('reminders').get();
+            const remindersSnapshot = await db.collection('reminders').orderBy('date','asc').get();
 
             // array para armazenar os dados dos lembretes
             const remindersData: Reminder[] = [];
@@ -38,8 +38,8 @@ export default class ReminderServices {
         } else {
             formattedDate = date;
         }
-        console.log(formattedDate);
 
+        // obtém o dia da semana da data, mas como o firebase tem um padrão de fuso diferente foi necessário adicionar um dia para pegar o dia da semana correto
         const dayOfWeek = getDay(formattedDate) + 1;
 
         const weekdays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
@@ -53,7 +53,6 @@ export default class ReminderServices {
         };
 
         // adiciona documento a coleção
-        // await db.collection('reminders').add(newReminder);
         const reminder = await db.collection('reminders').add(newReminder);
         newReminder.id = reminder.id;
         return newReminder;

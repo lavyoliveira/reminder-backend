@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 
-import db from '../../utils/repository';
 import ReminderServices from '../services/services';
 
 export default class RemindersController{
@@ -19,7 +18,6 @@ export default class RemindersController{
         const reminderServices = new ReminderServices();
         try {        
             const { name, date } = req.body;
-            console.log(req.body);
 
             const newReminder = await reminderServices.addReminder(name, date);
 
@@ -35,7 +33,6 @@ export default class RemindersController{
         try {
             const id = req.params.id;
 
-            // Deleta o documento da coleção "reminders" com o ID fornecido
             await reminderServices.deleteReminder(id);
 
             return res.json({ message: 'Lembrete deletado com sucesso.' });
@@ -45,18 +42,4 @@ export default class RemindersController{
         }
     }
     
-}
-
-export const deleteReminder = async (req: Request, res: Response) => {
-    try {
-        const id = req.params.id;
-
-        // Deleta o documento da coleção "reminders" com o ID fornecido
-        await db.collection('reminders').doc(id).delete();
-
-        return res.json({ message: 'Lembrete deletado com sucesso.' });
-    } catch (error) {
-        console.error('Erro ao deletar o lembrete:', error);
-        return res.status(500).json({ error: 'Erro ao deletar o lembrete.' });
-    }
 }
