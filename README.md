@@ -33,6 +33,7 @@ To use Reminder, follow the steps:
 
 ```
 To use, simply type "npm run dev" on terminal
+Api will be running in "localhost:3000" by default
 ```
 
 [⬆ Voltar ao topo](#nome-do-projeto)<br>
