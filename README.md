@@ -1,6 +1,6 @@
 # Reminder backend
 
-> Created for Dti digital test. A new Flutter app to remind the tasks. Backend is integrated with Firebase database, among with created apis to get the datas for the Flutter Reminder.
+> A new Flutter app to remind the tasks. Backend is integrated with Firebase database, among with created apis to get the datas for the Flutter Reminder.
 
 ### What is already done?
 
